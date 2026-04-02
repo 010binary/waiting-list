@@ -1,0 +1,47 @@
+@model AdminDashboardViewModel
+
+@{
+    ViewData["Title"] = "Admin dashboard";
+}
+
+<div class="mx-auto max-w-4xl space-y-6">
+    <section class="space-y-3">
+        <h1 class="text-3xl font-bold">Admin dashboard</h1>
+        <p class="text-gray-600">A lightweight overview of the current waiting list.</p>
+    </section>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+        <div class="rounded border p-4 shadow-sm">
+            <div class="text-sm font-medium text-gray-500">Total waiting list members</div>
+            <div class="mt-2 text-4xl font-bold">@Model.TotalWaitingListMembers</div>
+        </div>
+    </div>
+
+    <section class="space-y-3">
+        <h2 class="text-2xl font-semibold">Recent signups</h2>
+        @if (Model.RecentSignups.Count == 0)
+        {
+            <p class="text-gray-600">No signups yet.</p>
+        }
+        else
+        {
+            <div class="space-y-3">
+                @foreach (var signup in Model.RecentSignups)
+                {
+                    <article class="rounded border p-4 shadow-sm">
+                        <div class="flex items-center justify-between gap-4">
+                            <h3 class="text-lg font-semibold">@signup.Name</h3>
+                            <span class="text-sm text-gray-500">@signup.CreatedAt.UtcDateTime.ToLocalTime()</span>
+                        </div>
+                        <p class="text-gray-700">@signup.Email</p>
+                        @if (!string.IsNullOrWhiteSpace(signup.Notes))
+                        {
+                            <p class="mt-2 text-sm text-gray-600">@signup.Notes</p>
+                        }
+                    </article>
+                }
+            </div>
+        }
+    </section>
+</div>
+

@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "Waiting list";
+}
+
+<div class="mx-auto max-w-4xl space-y-8">
+    <section class="space-y-4 rounded border p-8 shadow-sm">
+        <h1 class="text-4xl font-bold">Waiting list</h1>
+        <p class="text-lg text-gray-600">
+            A vertical-slice ASP.NET Core MVC app organized around feature folders.
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+            <a asp-controller="WaitingList" asp-action="Index" class="rounded bg-black px-4 py-2 text-white">Join the waiting list</a>
+            <a asp-controller="Notifications" asp-action="Index" class="rounded border px-4 py-2">View notifications</a>
+            <a asp-controller="Admin" asp-action="Dashboard" class="rounded border px-4 py-2">Admin dashboard</a>
+        </div>
+    </section>
+
+    <section class="grid gap-4 md:grid-cols-3">
+        <article class="rounded border p-4 shadow-sm">
+            <h2 class="text-xl font-semibold">Public feature</h2>
+            <p class="mt-2 text-gray-600">The home and privacy pages live in `Features/Public`.</p>
+        </article>
+        <article class="rounded border p-4 shadow-sm">
+            <h2 class="text-xl font-semibold">Waiting list slice</h2>
+            <p class="mt-2 text-gray-600">Signups flow through `WaitingListController`, a service, and a repository.</p>
+        </article>
+        <article class="rounded border p-4 shadow-sm">
+            <h2 class="text-xl font-semibold">Feature routing</h2>
+            <p class="mt-2 text-gray-600">Controllers resolve views from their own feature folders before shared fallbacks.</p>
+        </article>
+    </section>
+</div>

@@ -1,0 +1,42 @@
+@model WaitingListViewModel
+
+@{
+    ViewData["Title"] = "Join the waiting list";
+}
+
+<div class="mx-auto max-w-2xl space-y-6">
+    <section class="space-y-3">
+        <h1 class="text-3xl font-bold">Join the waiting list</h1>
+        <p class="text-gray-600">
+            Tell us a little about yourself and we’ll keep you updated as the product grows.
+        </p>
+    </section>
+
+    <form asp-action="Confirm" method="post" class="space-y-4 rounded border p-6 shadow-sm">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-red-600"></div>
+
+        <div>
+            <label asp-for="Name" class="block font-medium"></label>
+            <input asp-for="Name" class="mt-1 w-full rounded border px-3 py-2" />
+            <span asp-validation-for="Name" class="text-sm text-red-600"></span>
+        </div>
+
+        <div>
+            <label asp-for="Email" class="block font-medium"></label>
+            <input asp-for="Email" class="mt-1 w-full rounded border px-3 py-2" />
+            <span asp-validation-for="Email" class="text-sm text-red-600"></span>
+        </div>
+
+        <div>
+            <label asp-for="Notes" class="block font-medium"></label>
+            <textarea asp-for="Notes" rows="4" class="mt-1 w-full rounded border px-3 py-2"></textarea>
+            <span asp-validation-for="Notes" class="text-sm text-red-600"></span>
+        </div>
+
+        <button type="submit" class="rounded bg-black px-4 py-2 text-white">
+            Join now
+        </button>
+    </form>
+</div>
+

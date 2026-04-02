@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Razor;
 using waitinglist.Data;
+using waitinglist.Features.Admin;
+using waitinglist.Features.Infrastructure;
+using waitinglist.Features.Notifications;
+using waitinglist.Features.WaitingList;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +15,14 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddSingleton<WaitingListRepository>();
+builder.Services.AddScoped<WaitingListService>();
+builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<AdminService>();
+builder.Services.Configure<RazorViewEngineOptions>(options =>
+{
+    options.ViewLocationExpanders.Add(new FeatureFolderViewLocationExpander());
+});
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -34,7 +47,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "privacy",
+    pattern: "privacy",
+    defaults: new { controller = "Home", action = "Privacy" });
 
 app.MapControllerRoute(
     name: "default",

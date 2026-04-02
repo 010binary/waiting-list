@@ -1,0 +1,26 @@
+@model IReadOnlyList<NotificationItem>
+
+@{
+    ViewData["Title"] = "Notifications";
+}
+
+<div class="mx-auto max-w-3xl space-y-6">
+    <section class="space-y-3">
+        <h1 class="text-3xl font-bold">Notifications</h1>
+        <p class="text-gray-600">A simple feature slice for message delivery and system updates.</p>
+    </section>
+
+    <div class="space-y-4">
+        @foreach (var notification in Model)
+        {
+            <article class="rounded border p-4 shadow-sm">
+                <div class="flex items-center justify-between gap-4">
+                    <h2 class="text-xl font-semibold">@notification.Title</h2>
+                    <span class="text-sm text-gray-500">@notification.CreatedAt.UtcDateTime.ToLocalTime()</span>
+                </div>
+                <p class="mt-2 text-gray-700">@notification.Message</p>
+            </article>
+        }
+    </div>
+</div>
+
