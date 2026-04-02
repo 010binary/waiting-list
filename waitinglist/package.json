@@ -1,0 +1,25 @@
+{
+  "name": "waitinglist",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "css:build": "npx tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/site.css --minify",
+    "css:watch": "npx tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/site.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/010binary/waiting-list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/010binary/waiting-list/issues"
+  },
+  "homepage": "https://github.com/010binary/waiting-list#README.md",
+  "description": "",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "tailwindcss": "^4.2.2"
+  }
+}
